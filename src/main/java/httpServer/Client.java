@@ -3,11 +3,7 @@ package httpServer;
 import java.net.*;
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Client {
     public static void main(String[] ar) {
@@ -22,7 +18,7 @@ public class Client {
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-            String line = null;
+            String line;
             System.out.println("Type get and it will send you current directory files and directories.");
             System.out.println();
 
@@ -47,7 +43,7 @@ public class Client {
 
     }
 
-    public static void FilesList(String path) throws IOException {
+    private static void FilesList(String path) throws IOException {
         Files.walk(Paths.get(path))
                 .filter(Files::isRegularFile)
                 .forEach(System.out::println);
